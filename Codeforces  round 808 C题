@@ -1,0 +1,59 @@
+codeforces.com/contest/1708/problem/C
+
+存在位置使得在该位置前的并且智力大于q的都不测试，而后面所有的都能被测试，然后找最小的位置时测试数最大。
+二分寻找位置x,使的x及后面的测试都可以进行，而x前q未改变，前面测试的数量不变，x越小测试的越多。
+代码：
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define all(x) x.begin(),x.end()
+#define endl '\n'
+const int maxn = 2e5+10;
+const int mod = 998244353;
+const int INF  =1e9+20;
+ll n,m,k,q;
+int a[maxn],b[maxn];
+bool check(int m) {
+    for(int i =1;i<=n;i++)
+        b[i]  =0;
+    int p = q;
+    for(int i =1;i<m;i++) {
+        if(a[i]<=p) {
+           b[i]  =1;
+        }
+    }
+    for(int i =m;i<=n;i++) {
+        b[i] = 1;
+        if(p==0) return 0;
+        if(a[i]>p)p--;
+    }
+    if(p<0)return 0;
+    return 1;
+}
+void solve()
+{
+    cin>>n>>q;
+    for(int  i=1;i<=n;i++) {
+        cin>>a[i];
+    }
+    ll l = 1,r = n;
+    string ans = s;
+    while(l<=r) {
+        ll mid = l+r>>1;
+        if(check(mid)) {
+            r = mid-1;
+        }
+        else l = mid+1;
+    }
+    check(r+1);
+    for(int i = 1;i<=n;i++)
+        cout<<b[i];
+    cout<<endl;
+}
+int main() {
+    int t  =1;
+    cin>>t;
+    while(t--) {
+        solve();
+    }
+}
