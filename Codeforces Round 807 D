@@ -1,0 +1,44 @@
+题目:codeforces.com/contest/1705/problem/D
+观察两个字符串可以看出每次移动都是在01交替时，也就是01的分界线。而在分界线处我们可以将分界线右移或者左移，只要将分界线与目标串的分界线完全一致就可以了；
+而不可成功的情况是，第一或最后位置不同，或分界线个数不同。
+代码：
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define all(x) x.begin(),x.end()
+const int maxn = 2e5+10;
+const int MOD = 998244353;
+const int INF  =1e9+20;
+ll n,m,k,l,x,r,ans,c,q;
+ll a[maxn],b[maxn];
+void  solve(){
+    string a,b;
+    cin>>n;
+    cin>>a>>b;
+    if(a[0]!=b[0]||a[n-1]!=b[n-1]) {
+        cout<<"-1"<<endl;
+        return;
+    }
+    vector<int>a1,a2;
+    for(int i =0;i<n-1;i++) {
+        if(a[i]!=a[i+1])a1.push_back(i);
+        if(b[i]!=b[i+1])a2.push_back(i);
+    }
+    if(a1.size()!=a2.size()) {
+        cout<<-1<<endl;
+    }
+    else {
+        ll ans = 0;
+        for(int  i=0;i<a1.size();i++) {
+            ans+=abs(a1[i]-a2[i]);
+        }
+        cout<<ans<<endl;
+    }
+}
+int main() {
+    int t  =1;
+    cin>>t;
+    while(t--) {
+        solve();
+    }
+}
