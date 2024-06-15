@@ -1,0 +1,45 @@
+题目：codeforces.com/contest/1985/problem/G
+代码：
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define all(x) x.begin(),x.end()
+const int maxn = 3e5+10;
+const int MOD = 1e9+7;
+const int INF  =1e9+20;
+ll n,m,k,l,x,r,ans,q;
+ll a[maxn],b[maxn],c[maxn];
+map<ll,ll>mp;
+ll sum= 0 ;
+ll qpow(ll x,ll y) {
+    ll res =1;
+    while(y) {
+        if(y&1) res=res*x%MOD;
+        x = x*x%MOD;
+        y>>=1;
+    }
+    return res;
+}
+void  solve(){
+    cin>>l>>r>>k;
+    cout<<(qpow(9/k+1,r)-qpow(9/k+1,l)+MOD)%MOD<<endl;
+}
+int main() {
+    int t  =1;
+    cin>>t;
+    while(t--) {
+        solve();
+    }
+}
+
+
+学会的好东西：快速求pow
+ll qpow(ll x,ll y) {
+    ll res =1;
+    while(y) {
+        if(y&1) res=res*x%MOD;
+        x = x*x%MOD;
+        y>>=1;
+    }
+    return res;
+}
